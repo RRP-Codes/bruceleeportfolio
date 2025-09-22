@@ -1,0 +1,646 @@
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <title>Bruce Lee * Portfolio </title>
+
+
+    <style>
+        :root {
+            --bg: #0a192f;
+            --panel: #112240;
+            --muted: #8892b0;
+            --text: #ccd6f6;
+            --accent: #64ffda;
+            --accent-2: #0ff1ce;
+            --shaddow: 0 10px 30px rgba(0, 0, 0, .35);
+            --radius-x1: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: radial-gradient(1200px 600px at 10% -10%, var(--bg) 45%), var(--bg);
+            color: var(--text);
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+            line-height: 1.5;
+        }
+
+        header{ position: sticky; top: 0; z-index: 500; backdrop-filter: saturate(180%) blur(10px); background: rgba(15, 18, 33, 0.85); border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .top.bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 800;
+            letter-spacing: .3px;
+            font-size: 18px;
+        }
+
+        .brand-mark {
+            width: 30px;
+            height: 30px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            box-shadow: var(--shadow);
+            display: grid;
+            place-items: center;
+            font-size: 16px;
+            font-weight: 900;
+        }
+
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 22px;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 10px;
+            border-radius: 10px;
+            position: relative;
+            transition: all .2s ease;
+        }
+
+        nav a:hover {
+            color: var(--text);
+            text-shadow: 0 0 12px rgba(124, 140, 251, .45);
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            bottom: 4px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .2s ease;
+            border-radius: 2px;
+        }
+
+        nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* ===== Sections ===== */
+        section {
+            padding: 64px 0;
+        }
+
+        section .section-title {
+            font-size: 28px;
+            font-weight: 900;
+            margin: 0 0 18px;
+            letter-spacing: .4px;
+        }
+
+        .panel {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02));
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
+        }
+
+        /* Task 3: About Me */
+        .about {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 22px;
+            align-items: center;
+            padding: 22px;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, .12);
+            background: #111726;
+            display: grid;
+            place-items: center;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about h1 {
+            margin: 0 0 8px;
+            font-size: 26px;
+        }
+
+        .about p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        /* Task 4: Skills grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .skill {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, .06);
+            background: rgba(255, 255, 255, .03);
+            transition: transform .15s ease, background .15s ease;
+        }
+
+        .skill:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, .05);
+        }
+
+        .skill .logo {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            background: rgba(124, 140, 251, .15);
+        }
+
+        .skill b {
+            font-size: 14px;
+        }
+
+        .skill span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* Task 5: Projects cards */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+
+        .project {
+            padding: 18px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02));
+        }
+
+        .project h3 {
+            margin: 0 0 8px;
+            font-size: 18px;
+        }
+
+        .project p {
+            margin: 0 0 12px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(124, 140, 251, .12);
+        }
+
+        /* Task 6 + 7: Recommendations */
+        .recs {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        .rec {
+            padding: 16px;
+            border-left: 4px solid var(--accent);
+            background: rgba(255, 255, 255, .03);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .rec cite {
+            display: block;
+            margin-top: 6px;
+            color: var(--muted);
+            font-style: normal;
+        }
+
+        .rec-form {
+            display: grid;
+            gap: 10px;
+            padding: 16px;
+        }
+
+        .rec-form input,
+        .rec-form textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .04);
+            color: var(--text);
+            outline: none;
+            font-size: 14px;
+        }
+
+        .rec-form textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .btn {
+            cursor: pointer;
+            user-select: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #051116;
+            font-weight: 800;
+            letter-spacing: .2px;
+            box-shadow: var(--shadow);
+        }
+
+        /* Task 8: Home icon (floating) */
+        .home-fab {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 60;
+            width: 54px;
+            height: 54px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, .2);
+        }
+
+        .home-fab svg {
+            width: 26px;
+            height: 26px;
+            fill: #051116;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Task 9: Confirmation modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, .5);
+            z-index: 70;
+        }
+
+        .modal[open] {
+            display: flex;
+        }
+
+        .modal-card {
+            width: min(520px, 92vw);
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, .12);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .modal-card h3 {
+            margin-top: 0;
+        }
+
+        /* Utilities */
+        .mt-2 {
+            margin-top: 8px;
+        }
+
+        .mt-3 {
+            margin-top: 12px;
+        }
+
+        .mt-4 {
+            margin-top: 16px;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px 0;
+            color: var(--muted);
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, .06);
+        }
+    </style>
+</head>
+<body>
+  <a id="top"></a>
+  <header>
+    <div class="container topbar">
+      <a class="brand" href="#top" aria-label="Go to top/home">
+        <span class="brand-mark" aria-hidden="true">BL</span>
+        Bruce Lee
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#recommendations">Recommendations</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Task 3: About Me -->
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <div class="panel about">
+        <div class="avatar" aria-hidden="true">
+            <img src="https://i.pinimg.com/736x/c4/41/27/c441275490f9004c331795549b78f5db.jpg" alt="Profile photo of Bruce Lee">
+          <svg viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Profile avatar">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#7c8cfb"/>
+                <stop offset="100%" stop-color="#00d0a8"/>
+              </linearGradient>
+            </defs>
+            <rect width="120" height="120" rx="16" fill="#0b0f1f"/>
+            <circle cx="60" cy="46" r="22" fill="url(#g)"/>
+            <rect x="22" y="72" width="76" height="34" rx="14" fill="url(#g)" opacity="0.6"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Bruce Lee</h1>
+          <p class="muted">Entry-level front-end developer based in Seattle, passionate about building accessible, fast, and human-centered web apps. I love turning complex problems into intuitive interfaces and recently completed projects in travel planning, small business dashboards, and community tools.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Task 4: Skills -->
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid">
+        <article class="skill" aria-label="HTML skill">
+          <div class="logo" aria-hidden="true">⚙️</div>
+          <div>
+            <b>HTML5</b>
+            <div><span>Semantic, accessible structure</span></div>
+          </div>
+        </article>
+        <article class="skill" aria-label="CSS skill">
+          <div class="logo" aria-hidden="true">🎨</div>
+          <div>
+            <b>CSS3</b>
+            <div><span>Flexbox, Grid, responsive design</span></div>
+          </div>
+        </article>
+        <article class="skill" aria-label="JavaScript skill">
+          <div class="logo" aria-hidden="true">🧠</div>
+          <div>
+            <b>JavaScript</b>
+            <div><span>ES6+, DOM, fetch APIs</span></div>
+          </div>
+        </article>
+        <article class="skill" aria-label="React skill">
+          <div class="logo" aria-hidden="true">🦾</div>
+          <div>
+            <b>React (basics)</b>
+            <div><span>Components, hooks, state</span></div>
+          </div>
+        </article>
+        <article class="skill" aria-label="Git skill">
+          <div class="logo" aria-hidden="true">🔧</div>
+          <div>
+            <b>Git & GitHub</b>
+            <div><span>Branching, PRs, issues</span></div>
+          </div>
+        </article>
+        <article class="skill" aria-label="Accessibility skill">
+          <div class="logo" aria-hidden="true">👨‍💻</div>
+          <div>
+            <b>Accessibility</b>
+            <div><span>Keyboard, ARIA, contrast</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Task 5: Projects -->
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects">
+        <article class="project">
+          <h3>Seattle Rental Finder</h3>
+          <p>A client-side app that filters and ranks rental listings by commute time, price, and neighborhood vibe using a custom scoring formula.</p>
+          <div class="chips">
+            <span class="chip">HTML</span>
+            <span class="chip">CSS Grid</span>
+            <span class="chip">JavaScript</span>
+          </div>
+        </article>
+        <article class="project">
+          <h3>GreenGrocer Dashboard</h3>
+          <p>Lightweight dashboard for a local grocer to track daily sales, inventory levels, and reorder alerts without a backend.</p>
+          <div class="chips">
+            <span class="chip">HTML</span>
+            <span class="chip">Charts</span>
+            <span class="chip">Vanilla JS</span>
+          </div>
+        </article>
+        <article class="project">
+          <h3>RoadTrip Planner</h3>
+          <p>Planner that maps stops, estimates fuel costs, and builds a shareable itinerary. Built for friends visiting national parks.</p>
+          <div class="chips">
+            <span class="chip">Responsive</span>
+            <span class="chip">LocalStorage</span>
+            <span class="chip">JS Modules</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Task 6 & 7: Recommendations + form -->
+    <section id="recommendations">
+      <h2 class="section-title">Recommendations</h2>
+      <div id="rec-list" class="recs">
+        <blockquote class="rec">“Bruce redesigned our store site and the checkout drop-offs fell immediately. Clear communicator and quick learner.”<cite>— Princess Diana, Princess.</cite></blockquote>
+        <blockquote class="rec">“Impressed with the attention to accessibility. Bruce caught issues others missed and suggested solid fixes.”<cite>— Clark Kent, Product Manager.</cite></blockquote>
+        <blockquote class="rec">“Delivered on time with thoughtful UX touches. I'd happily collaborate again.”<cite>— Tony Stark, Designer</cite></blockquote>
+      </div>
+
+      <div class="panel mt-4">
+        <form id="rec-form" class="rec-form" autocomplete="on">
+          <div class="grid-2">
+            <div>
+              <label for="name">Your name</label>
+              <input id="name" name="name" placeholder="e.g., Alex Kim" required />
+            </div>
+            <div>
+              <label for="role">Role / Company (optional)</label>
+              <input id="role" name="role" placeholder="e.g., Tech Lead @ Fabrica" />
+            </div>
+          </div>
+          <div>
+            <label for="message">Recommendation</label>
+            <textarea id="message" name="message" placeholder="Share a brief recommendation..." required></textarea>
+          </div>
+          <div>
+            <button class="btn" type="submit" aria-haspopup="dialog">
+              <span>Submit Recommendation</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Task 8: Home icon floating button -->
+  <a class="home-fab" href="#top" aria-label="Home">
+    <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+      <path d="M12 3l9 8h-3v9h-5v-6H11v6H6v-9H3l9-8z"/>
+    </svg>
+    <span class="sr-only">Home</span>
+  </a>
+
+  <!-- Task 9: Modal confirmation dialog -->
+  <div id="confirm-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+    <div class="modal-card">
+      <h3 id="confirm-title">Thank you for your recommendation! 🎉</h3>
+      <p class="muted">Your message has been added below. Would you like to view it now?</p>
+      <div class="mt-3" style="display:flex; gap:10px; justify-content:center;">
+        <button id="view-recs" class="btn" type="button">View Recommendations</button>
+        <button id="close-modal" class="btn" type="button" style="background:rgba(255,255,255,.06); color:var(--text);">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="container">
+    <small>© <span id="year"></span> Bruce Lee • Seattle, WA</small>
+  </footer>
+
+  <script>
+    // Utilities
+    const $ = (sel, root=document) => root.querySelector(sel);
+
+    // Set current year in footer
+    $('#year').textContent = new Date().getFullYear();
+
+    // Smooth close after nav click on mobile (optional small UX)
+    document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => a.blur()));
+
+    // Task 7 + 9: Handle recommendations form submission
+    const form = $('#rec-form');
+    const list = $('#rec-list');
+    const modal = $('#confirm-modal');
+    const closeBtn = $('#close-modal');
+    const viewBtn = $('#view-recs');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const name = (data.get('name') || 'Anonymous').toString().trim();
+      const role = (data.get('role') || '').toString().trim();
+      const message = (data.get('message') || '').toString().trim();
+      if(!message) return;
+
+      const citeText = role ? `— ${name}, ${role}` : `— ${name}`;
+
+      const block = document.createElement('blockquote');
+      block.className = 'rec';
+      block.innerHTML = `“${message.replace(/"/g, '\\"')}”<cite>${citeText}</cite>`;
+
+      list.appendChild(block);
+      form.reset();
+
+      // Show confirmation modal (custom dialog) - Task 9
+      modal.setAttribute('open', '');
+    });
+
+    closeBtn.addEventListener('click', () => modal.removeAttribute('open'));
+    viewBtn.addEventListener('click', () => {
+      modal.removeAttribute('open');
+      location.hash = '#recommendations';
+    });
+  </script>
+</body>
+</html>
